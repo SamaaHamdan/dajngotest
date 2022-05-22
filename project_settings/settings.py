@@ -18,10 +18,10 @@ PROJECT_DIR = os.path.abspath(os.path.dirname(os.path.dirname(os.path.abspath(__
 SECRET_KEY = '@)0qp0!&-vht7k0wyuihr+nk-b8zrvb5j^1d@vl84cd1%)f=dz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Change and set this to correct IP/Domain
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -35,6 +35,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -99,6 +100,8 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, 'static'),
     os.path.join(PROJECT_DIR, 'models'),
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CONTENT_TYPES = ['video']
 MAX_UPLOAD_SIZE = "104857600"
